@@ -4,6 +4,15 @@ public class DigitalVideoDisc {
     private String director;
     private int length;
     private float cost;
+    private static int nbDigitalVideoDiscs = 0;
+    private int id;
+     {
+        nbDigitalVideoDiscs++;
+        id=nbDigitalVideoDiscs;
+    }
+    public int getId() {
+        return id;
+    }
     public String getTitle() {
         return title;
     }
@@ -28,6 +37,7 @@ public class DigitalVideoDisc {
         this.title = title;
         this.category = category;
         this.cost = cost;
+
     }
     public DigitalVideoDisc(String title, String category, String director, float cost) {
         super();
