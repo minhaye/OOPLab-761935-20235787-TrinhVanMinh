@@ -12,5 +12,8 @@ public class Aims {
         anOrder.printCost();
         DigitalVideoDisc dvd4=new DigitalVideoDisc("bubu","Animation",20.99f);
         anOrder.removeDigitalVideoDisc(dvd4);
+        DigitalVideoDisc dvd5=new DigitalVideoDisc("laba","Animation",28.99f);
+        anOrder.addDigitalVideoDisc(dvd4,dvd5,dvd1);
+        anOrder.printCost();
     }
 }
