@@ -1,0 +1,2 @@
+Reading Assignment: When should accessor methods be used?
+- phương thức truy cập được dùng để giúp cho các đối tượng khác truy cập và thay đổi các thuộc tính private ở đối tượng này, mà vẫn đảm bảo tính đóng gói, và chúng ta có thể kiểm soát được chúng, thay vì để public thuộc tính có thể gây lỗi hoặc lạm quyền khi đọc và edit không qua getter và setter
