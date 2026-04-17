@@ -5,6 +5,15 @@ public abstract class Media {
     private String title;
     private String category;
     private float cost;
+    public Media(int id2, String title2, String category2, float cost2) {
+        this.id = id2;
+        this.title = title2;
+        this.category = category2;
+        this.cost = cost2;
+    }
+    public Media() {
+        //TODO Auto-generated constructor stub
+    }
     public int getId() {
         return id;
     }
