@@ -25,4 +25,12 @@ public class Store {
             System.out.println("The media " + media.getTitle() + " has been removed");
         } else System.out.println("The media is not in the store");
     }
+    public void sortByTitleCost(){
+        itemsInStore.sort(new MediaComparatorByTitleCost());
+        System.out.println("Sorted by title cost");
+    }
+    public void sortByCostTitle(){
+        itemsInStore.sort(new MediaComparatorByCostTitle());
+        System.out.println("Sorted by cost title");
+    }
 }

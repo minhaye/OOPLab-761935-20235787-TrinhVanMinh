@@ -13,9 +13,16 @@ public class Disc extends Media {
     public Disc() {
         
     }
-
+    public Disc(String title, String category, float cost) {
+        super(title, category, cost);
+    }
     public int getLength() {
         return length;
+    }
+
+    @Override
+    public String toString() {
+        return this.getTitle() + " - " + this.getCategory() + " - " + this.getDirector() + ": " + this.getCost() + "$";
     }
 
     public String getDirector() {

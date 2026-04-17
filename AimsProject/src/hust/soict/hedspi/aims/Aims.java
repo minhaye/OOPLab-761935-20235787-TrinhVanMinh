@@ -1,7 +1,10 @@
 
 package hust.soict.hedspi.aims;
 
+import java.util.*;
+
 import hust.soict.hedspi.aims.cart.Cart;
+import hust.soict.hedspi.aims.media.*;
 import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 
 public class Aims {
@@ -28,5 +31,12 @@ public class Aims {
         anOrder.searchById(50);
         anOrder.searchByTitle("Aladdin");
         anOrder.searchByTitle("bububbubu");
+        List<Media> mediae=new ArrayList<Media>();
+        CompactDisc cd1=new CompactDisc("cd1","music","artist1",10.99f);
+        mediae.add(cd1);
+        Book book1=new Book("book1","education",15.99f);
+        mediae.add(book1);
+        mediae.add(dvd1);
+        for(Media media: mediae) System.out.println(media.toString());
     }
 }

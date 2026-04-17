@@ -2,8 +2,7 @@ package hust.soict.hedspi.aims.cart;
 
 import java.util.ArrayList;
 
-import hust.soict.hedspi.aims.media.DigitalVideoDisc;
-import hust.soict.hedspi.aims.media.Media;
+import hust.soict.hedspi.aims.media.*;
 
 
 public class Cart {
@@ -73,4 +72,13 @@ public class Cart {
         }
         System.out.println("Not found DVD title "+title);
     }
+    public void sortByTitleCost(){
+        itemsOrdered.sort(new MediaComparatorByTitleCost());
+        System.out.println("Sorted by title cost");
+    }
+    public void sortByCostTitle(){
+        itemsOrdered.sort(new MediaComparatorByCostTitle());
+        System.out.println("Sorted by cost title");
+    }
+
 }

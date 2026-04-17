@@ -11,6 +11,11 @@ public class CompactDisc extends Disc implements Playable {
         this.artist = artist;
     }
 
+    public CompactDisc(String title, String category, String artist, float cost) {
+        super(title, category, cost);
+        this.artist = artist;
+    }
+
     public String getArtist() {
         return artist;
     }
@@ -29,6 +34,10 @@ public class CompactDisc extends Disc implements Playable {
             System.out.println("Track removed");
         } 
         else System.out.println("Track not found");
+    }
+    @Override
+    public String toString() {
+        return "CD - " + this.getTitle() + " - " + this.getCategory() + " - " + this.getDirector() + " - " + this.getArtist() + ": " + this.getCost() + "$";
     }
 
     @Override

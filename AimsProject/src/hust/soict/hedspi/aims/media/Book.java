@@ -8,6 +8,12 @@ public class Book extends Media {
     public Book(){
         
     }
+    public Book(int id, String title, String category, float cost) {
+        super(id, title, category, cost);
+    }
+    public Book(String title, String category, float cost) {
+        super(title, category, cost);
+    }
     public void addAuthor(String authorName){
         if(authors.contains(authorName)) System.out.println("The author is already in the list");
         else{
@@ -21,5 +27,11 @@ public class Book extends Media {
             System.out.println("The author " + authorName + " has been removed");
         }
         else System.out.println("The author is not in the list");
+    }
+    @Override
+    public String toString() {
+        String result = this.getTitle() + " - " + this.getCategory() + ": " + this.getCost() + " Authors: ";
+        for(String author: authors) result += author + ", ";
+        return result;
     }
 }
