@@ -1,47 +1,25 @@
 package hust.soict.hedspi.aims.media;
 
 public class DigitalVideoDisc extends Disc implements Playable {
-    private String director;
-    private int length;
     private static int nbDigitalVideoDiscs = 0;
      {
         nbDigitalVideoDiscs++;
         setId(nbDigitalVideoDiscs);
     }
-    public String getDirector() {
-        return director;
-    }
-    public int getLength() {
-        return length;
-    }
-    public float getCost() {
-        return super.getCost();
-    }
     public DigitalVideoDisc(String title) {
-        super();
-        this.setTitle(title);
+        super(title, "Unknown", 0.0f);
+    }
+    public DigitalVideoDisc(int id, String title, String category, float cost) {
+        super(id, title, category, cost);
     }
     public DigitalVideoDisc(String title, String category, float cost) {
-        super();
-        this.setTitle(title);
-        this.setCategory(category);
-        this.setCost(cost);
-
+        super(title, category, cost);
     }
-    public DigitalVideoDisc(String title, String category, String director, float cost) {
-        super();
-        this.setTitle(title);
-        this.setCategory(category);
-        this.director = director;
-        this.setCost(cost);
+    public DigitalVideoDisc(int id, String title, String category, float cost, int length, String director) {
+        super(id, title, category, cost, length, director);
     }
-    public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
-        super();
-        this.setTitle(title);
-        this.setCategory(category);
-        this.director = director;
-        this.length = length;
-        this.setCost(cost);
+    public DigitalVideoDisc(String title, String category, int length, float cost) {
+        super(title, category, length, cost);
     }
     
     @Override
