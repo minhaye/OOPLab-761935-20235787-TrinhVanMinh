@@ -12,12 +12,12 @@ public class StoreTest {
         DigitalVideoDisc dvd4=new DigitalVideoDisc("bubu","Animation",20.99f);
         DigitalVideoDisc dvd5=new DigitalVideoDisc("laba","Animation",28.99f);
         Store store = new Store();
-        store.addDVD(dvd1);
-        store.addDVD(dvd2);
-        store.addDVD(dvd3);
-        store.addDVD(dvd4);
-        store.addDVD(dvd5);
-        store.removeDVD(dvd1);
-        store.removeDVD(dvd4);
+        store.addMedia(dvd1);
+        store.addMedia(dvd2);
+        store.addMedia(dvd3);
+        store.addMedia(dvd4);
+        store.addMedia(dvd5);
+        store.removeMedia(dvd1);
+        store.removeMedia(dvd4);
     }
 }
