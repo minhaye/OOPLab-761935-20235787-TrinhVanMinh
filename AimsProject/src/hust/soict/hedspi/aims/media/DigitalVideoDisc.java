@@ -43,9 +43,7 @@ public class DigitalVideoDisc extends Disc implements Playable {
         this.length = length;
         this.setCost(cost);
     }
-    public void setTitle(String title) {
-        super.setTitle(title);
-    }
+    
     @Override
     public String toString() {
         return "DVD - " + this.getTitle() + " - " + this.getCategory() + " - " + this.getDirector() + " - " + this.getLength() + ": " + this.getCost() + "$";

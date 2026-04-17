@@ -1,3 +1,8 @@
 Suggestion: Write a toString() method for the DigitalVideoDisc class. What should be the
 return type of this method?
 - theo em thì nên trả về String
+Which classes are aggregates of other classes? Checking all constructors of whole classes if they
+initialize for their parts?
+- class CompactDisc là tập hợp của class Track, class Cart là tập hợp của Media, class Store là tập hợp của Media
+- do trong code của em đã khai báo các tập bằng cách tạo new từ đầu nên constructors không cần khởi tạo lại
+

@@ -9,6 +9,9 @@ import hust.soict.hedspi.aims.media.Media;
 public class Cart {
     private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
     private int qtyOrdered = 0;
+    public Cart() {
+        
+    }
     public void addMedia(Media media){
         if(itemsOrdered.contains(media)) System.out.println("The media is already in the cart");
         else{
