@@ -12,7 +12,7 @@ public abstract class Media {
         this.cost = cost2;
     }
     public Media() {
-        //TODO Auto-generated constructor stub
+        
     }
     public int getId() {
         return id;
