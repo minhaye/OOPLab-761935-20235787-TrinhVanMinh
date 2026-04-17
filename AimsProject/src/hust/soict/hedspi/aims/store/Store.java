@@ -1,6 +1,6 @@
 package hust.soict.hedspi.aims.store;
 
-import hust.soict.hedspi.aims.disc.DigitalVideoDisc;
+import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 
 public class Store {
     private final int MAX_NUMBERS_IN_STORE = 1000;
