@@ -1,0 +1,3 @@
+Suggestion: Write a toString() method for the DigitalVideoDisc class. What should be the
+return type of this method?
+- theo em thì nên trả về String

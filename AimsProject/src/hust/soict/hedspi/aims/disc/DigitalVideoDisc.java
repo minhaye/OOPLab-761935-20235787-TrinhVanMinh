@@ -58,4 +58,8 @@ public class DigitalVideoDisc {
     public void setTitle(String title) {
         this.title = title;
     }
+    @Override
+    public String toString() {
+        return "DVD - " + this.getTitle() + " - " + this.getCategory() + " - " + this.getDirector() + " - " + this.getLength() + ": " + this.getCost() + "$";
+    }
 }
