@@ -1,0 +1,8 @@
+What class should implement the Comparable interface?
+- Nếu dùng cách Comparable, class phù hợp nhất để implement là Media, vì các item trong cart đều là các đối tượng kiểu Media hoặc class con của Media
+In those classes, how should you implement the compareTo()method to reflect the ordering that we want?
+- Nếu chọn Comparable, ta phải xác định một thứ tự mặc định duy nhất ví dụ title -> cost
+Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this Comparable interface approach?
+- không nên dùng vì chỉ Comparable chỉ cung cấp một phương thức compareTo()
+Suppose the DVDs have a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this?
+- vậy thì phải dùng Comparator riêng cho từng class, và viết riêng giống như MediaComparatorByTileCost
