@@ -6,16 +6,22 @@ public class CompactDisc extends Disc implements Playable {
     private String artist;
     private ArrayList<Track> tracks = new ArrayList<>();
 
+    // public CompactDisc(int id, String title, String category, float cost,int length, String director, String artist) {
+    //     super(id, title, category, cost, length, director);
+    //     this.artist = artist;
+    // }
+    // public CompactDisc(int id, String title, String category, String artist, float cost) {
+    //     super(title, category, cost);
+    //     this.artist = artist;
+    // }
+    // public CompactDisc(String title, String category, String artist, float cost) {
+    //     super(title, category, cost);
+    //     this.artist = artist;
+    // }
+
+    // constructor duy nhất, đầy đủ mọi thứ nhưng chưa có tracks
     public CompactDisc(int id, String title, String category, float cost,int length, String director, String artist) {
         super(id, title, category, cost, length, director);
-        this.artist = artist;
-    }
-    public CompactDisc(int id, String title, String category, String artist, float cost) {
-        super(title, category, cost);
-        this.artist = artist;
-    }
-    public CompactDisc(String title, String category, String artist, float cost) {
-        super(title, category, cost);
         this.artist = artist;
     }
 

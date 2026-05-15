@@ -4,8 +4,8 @@ import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 
 public class TestPassingParameter {
     public static void main(String[] args) {
-        DigitalVideoDisc jungleDVD = new DigitalVideoDisc("Jungle");
-        DigitalVideoDisc cinderellaDVD = new DigitalVideoDisc("Cinderella");
+        DigitalVideoDisc jungleDVD = new DigitalVideoDisc(1, "Jungle", "Unknown", 0.0f, 0, "Unknown");
+        DigitalVideoDisc cinderellaDVD = new DigitalVideoDisc(2, "Cinderella", "Unknown", 0.0f, 0, "Unknown");
         swap(jungleDVD, cinderellaDVD);
         System.out.println("jungle dvd title: " + jungleDVD.getTitle());
         System.out.println("cinderella dvd title: " + cinderellaDVD.getTitle());
@@ -20,6 +20,6 @@ public class TestPassingParameter {
     public static void changeTitle(DigitalVideoDisc dvd, String title) {
         //String oldTitle = dvd.getTitle();
         dvd.setTitle(title);
-        dvd = new DigitalVideoDisc(title);
+        dvd = new DigitalVideoDisc(999, title, "Unknown", 0.0f, 0, "Unknown");
     }
 }

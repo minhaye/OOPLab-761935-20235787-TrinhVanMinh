@@ -1,18 +1,14 @@
 package hust.soict.hedspi.aims.screen.manager;
 
-import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.store.Store;
 
 import javax.swing.*;
-
 import java.awt.*;
 
-import java.util.ArrayList;
+public abstract class AddItemToStoreScreen extends JFrame {
+    protected Store store;
 
-public class StoreManagerScreen extends JFrame {
-    private Store store;
-
-    public StoreManagerScreen(Store store) {
+    public AddItemToStoreScreen(Store store) {
         this.store = store;
 
         Container cp = getContentPane();
@@ -21,7 +17,7 @@ public class StoreManagerScreen extends JFrame {
         cp.add(createNorth(), BorderLayout.NORTH);
         cp.add(createCenter(), BorderLayout.CENTER);
 
-        setTitle("Store");
+        setTitle("Add Item To Store");
         setSize(1024, 768);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -87,7 +83,7 @@ public class StoreManagerScreen extends JFrame {
 
         JLabel title = new JLabel("AIMS");
         title.setFont(new Font(title.getFont().getName(), Font.PLAIN, 50));
-        title.setForeground(Color.RED);
+        title.setForeground(Color.CYAN);
 
         header.add(Box.createRigidArea(new Dimension(10, 10)));
         header.add(title);
@@ -97,17 +93,5 @@ public class StoreManagerScreen extends JFrame {
         return header;
     }
 
-    JPanel createCenter() {
-        JPanel center = new JPanel();
-        center.setLayout(new GridLayout(3, 3, 2, 2));
-
-        ArrayList<Media> mediaInStore = store.getItemsInStore();
-
-        for (int i = 0; i < Math.min(mediaInStore.size(), 9); i++) {
-            MediaStore cell = new MediaStore(mediaInStore.get(i));
-            center.add(cell);
-        }
-
-        return center;
-    }
+    protected abstract JPanel createCenter();
 }

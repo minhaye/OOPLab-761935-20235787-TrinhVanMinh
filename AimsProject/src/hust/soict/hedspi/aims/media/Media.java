@@ -10,20 +10,13 @@ public abstract class Media {
     public static final Comparator<Media> COMPARE_BY_TITLE_COST = new MediaComparatorByTitleCost();
     public static final Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
 
-    public Media(int id2, String title2, String category2, float cost2) {
-        this.id = id2;
-        this.title = title2;
-        this.category = category2;
-        this.cost = cost2;
-    }
-    public Media() {
-        
-    }
-    public Media(String title, String category, float cost) {
+    public Media(int id, String title, String category, float cost) {
+        this.id = id;
         this.title = title;
         this.category = category;
         this.cost = cost;
     }
+    
     public int getId() {
         return id;
     }

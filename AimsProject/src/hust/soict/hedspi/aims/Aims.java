@@ -13,10 +13,10 @@ public class Aims {
     }
 
     private static void seedSampleMedia(Store store) {
-    Book cleanCode = new Book("Clean Code", "Programming", 18.5f);
+    Book cleanCode = new Book(1, "Clean Code", "Programming", 18.5f);
     cleanCode.addAuthor("Robert C. Martin");
 
-    Book dsaBook = new Book("Data Structures and Algorithms", "Education", 14.2f);
+    Book dsaBook = new Book(2, "Data Structures and Algorithms", "Education", 14.2f);
     dsaBook.addAuthor("Mark Allen Weiss");
 
     DigitalVideoDisc inception = new DigitalVideoDisc(
@@ -68,5 +68,5 @@ public class Aims {
     store.addMedia(randomAccessMemories);
     store.addMedia(divide);
     }
-    
+
 }
