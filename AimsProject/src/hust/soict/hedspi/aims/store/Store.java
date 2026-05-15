@@ -49,4 +49,9 @@ public class Store {
         for(int i=0;i<qtyInStore;i++) System.out.println((i+1)+". "+itemsInStore.get(i) .toString());
         System.out.println("************************************************");
      }
+
+    public ArrayList<Media> getItemsInStore() {
+        return itemsInStore;
+    }
+
 }
