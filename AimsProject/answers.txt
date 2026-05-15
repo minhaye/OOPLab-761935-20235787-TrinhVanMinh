@@ -1,8 +1,21 @@
-What class should implement the Comparable interface?
-- Nếu dùng cách Comparable, class phù hợp nhất để implement là Media, vì các item trong cart đều là các đối tượng kiểu Media hoặc class con của Media
-In those classes, how should you implement the compareTo()method to reflect the ordering that we want?
-- Nếu chọn Comparable, ta phải xác định một thứ tự mặc định duy nhất ví dụ title -> cost
-Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this Comparable interface approach?
-- không nên dùng vì chỉ Comparable chỉ cung cấp một phương thức compareTo()
-Suppose the DVDs have a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this?
-- vậy thì phải dùng Comparator riêng cho từng class, và viết riêng giống như MediaComparatorByTileCost
+Compare Swing and AWT elements
+
+1. Top-level containers
+- Swing thêm chữ J ở đầu tên lớp. Ví dụ AWT: Frame, Dialog, Window, Applet; còn Swing: JFrame, JDialog, JWindow, JApplet.
+- Các container của Swing linh hoạt hơn và hỗ trợ giao diện đẹp hơn.
+
+2. Components
+- AWT: Button, Label, TextField, TextArea, Checkbox, Choice, List, Panel
+- Swing: JButton, JLabel, JTextField, JTextArea, JCheckBox, JComboBox, JList, JPanel
+- Các component của Swing thường có tên tương ứng với AWT nhưng thêm chữ J ở đầu.
+
+3. Event-handling
+- AWT và Swing đều dùng cơ chế event-listener. Ví dụ: ActionEvent, ActionListener, addActionListener().
+=> Vì vậy cách xử lý sự kiện trong Swing và AWT khá giống nhau.
+
+4. Appearance
+- Giao diện AWT phụ thuộc nhiều vào hệ điều hành nên có thể khác nhau trên từng máy.
+- Giao diện Swing ít phụ thuộc vào hệ điều hành hơn và có thể thay đổi Look and Feel, nên thường đẹp và thống nhất hơn.
+
+5. Kết luận
+- Swing giống AWT về ý tưởng lập trình và xử lý sự kiện, nhưng Swing có nhiều component hơn, linh hoạt hơn và giao diện đẹp hơn.
