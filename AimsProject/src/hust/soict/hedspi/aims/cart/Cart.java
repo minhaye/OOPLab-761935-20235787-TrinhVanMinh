@@ -3,38 +3,57 @@ package hust.soict.hedspi.aims.cart;
 import java.util.ArrayList;
 
 import hust.soict.hedspi.aims.media.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 public class Cart {
-    private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
-    private int qtyOrdered = 0;
+    private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
+
+    public ObservableList<Media> getItemsOrdered() {
+        return itemsOrdered;
+    }
+
     public Cart() {
         
     }
-    public void addMedia(Media media){
-        if(itemsOrdered.contains(media)) System.out.println("The media is already in the cart");
+    public boolean addMedia(Media media){
+        if(itemsOrdered.contains(media)) {
+            System.out.println("The media is already in the cart");
+            return false;
+        }
         else{
             itemsOrdered.add(media);
-            qtyOrdered++;
             System.out.println("The media " + media.getTitle() + " has been added");
+            return true;
         }
     }
-    public void removeMedia(Media media){
+    public boolean removeMedia(Media media){
         if(itemsOrdered.contains(media)){
             itemsOrdered.remove(media);
-            qtyOrdered--;
             System.out.println("The media " + media.getTitle() + " has been removed");
-        } else System.out.println("The media is not in the cart");
+            return true;
+        } else {
+            System.out.println("The media is not in the cart");
+            return false;
+        }
     }
 
     public float totalCost(){
         float total=0;
-        for(int i=0;i<qtyOrdered;i++) total+=itemsOrdered.get(i).getCost();
+        for (Media media : itemsOrdered) {
+            total += media.getCost();
+        }
         return total;
     }
+
+    public void clear() {
+        itemsOrdered.clear();
+    }
+
     public void printCost(){
         float total=0;
-        for(int i=0;i<qtyOrdered;i++){
+        for(int i=0;i<itemsOrdered.size();i++){
             System.out.println((i+1)+"\t"+itemsOrdered.get(i).getTitle()+"\t"+itemsOrdered.get(i).getCost());
             total+=itemsOrdered.get(i).getCost();
         }
@@ -50,12 +69,12 @@ public class Cart {
     public void printListOrdered(){
         System.out.println("***********************CART***********************");
         System.out.println("Ordered Items:");
-        for(int i=0;i<qtyOrdered;i++) System.out.println((i+1)+". "+itemsOrdered.get(i) .toString());
+        for(int i=0;i<itemsOrdered.size();i++) System.out.println((i+1)+". "+itemsOrdered.get(i) .toString());
         System.out.println("Total cost: "+totalCost());
         System.out.println("************************************************");
     }
     public void searchById(int id){
-        for(int i=0;i<qtyOrdered;i++){
+        for(int i=0;i<itemsOrdered.size();i++){
             if(itemsOrdered.get(i).getId()==id){
                 System.out.println("Found DVD "+(i+1)+": "+itemsOrdered.get(i).toString());
                 return;
@@ -64,7 +83,7 @@ public class Cart {
         System.out.println("Not found DVD id "+id);
     }
     public void searchByTitle(String title){
-        for(int i=0;i<qtyOrdered;i++){
+        for(int i=0;i<itemsOrdered.size();i++){
             if(itemsOrdered.get(i).getTitle().equals(title)){
                 System.out.println("Found DVD "+(i+1)+": "+itemsOrdered.get(i).toString());
                 return;
