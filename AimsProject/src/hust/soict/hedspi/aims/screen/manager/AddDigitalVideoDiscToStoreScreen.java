@@ -1,11 +1,13 @@
 package hust.soict.hedspi.aims.screen.manager;
 
+import hust.soict.hedspi.aims.exception.AimsException;
 import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 import hust.soict.hedspi.aims.store.Store;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -59,19 +61,25 @@ public class AddDigitalVideoDiscToStoreScreen extends AddItemToStoreScreen {
 
         JButton btnAdd = new JButton("Add DVD");
         btnAdd.addActionListener(e -> {
-            int id = Integer.parseInt(tfId.getText());
-            String title = tfTitle.getText();
-            String category = tfCategory.getText();
-            String director = tfDirector.getText();
-            int length = Integer.parseInt(tfLength.getText());
-            float cost = Float.parseFloat(tfCost.getText());
+            try {
+                int id = Integer.parseInt(tfId.getText());
+                String title = tfTitle.getText();
+                String category = tfCategory.getText();
+                String director = tfDirector.getText();
+                int length = Integer.parseInt(tfLength.getText());
+                float cost = Float.parseFloat(tfCost.getText());
 
-            DigitalVideoDisc dvd = new DigitalVideoDisc(id, title, category, cost, length, director);
+                DigitalVideoDisc dvd = new DigitalVideoDisc(id, title, category, cost, length, director);
 
-            store.addMedia(dvd);
+                store.addMedia(dvd);
 
-            new StoreManagerScreen(store);
-            dispose();
+                new StoreManagerScreen(store);
+                dispose();
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Id, length and cost must be valid numbers.", "Invalid input", JOptionPane.ERROR_MESSAGE);
+            } catch (AimsException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Invalid input", JOptionPane.ERROR_MESSAGE);
+            }
         });
 
         center.add(form);

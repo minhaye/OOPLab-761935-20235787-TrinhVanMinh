@@ -2,12 +2,15 @@ package hust.soict.hedspi.aims.cart;
 
 import java.util.ArrayList;
 
+import hust.soict.hedspi.aims.exception.CartException;
 import hust.soict.hedspi.aims.media.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
 public class Cart {
+    public static final int MAX_NUMBERS_ORDERED = 20;
+
     private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
 
     public ObservableList<Media> getItemsOrdered() {
@@ -18,9 +21,14 @@ public class Cart {
         
     }
     public boolean addMedia(Media media){
+        if (media == null) {
+            throw new CartException("Cannot add null media to cart.");
+        }
+        if (itemsOrdered.size() >= MAX_NUMBERS_ORDERED) {
+            throw new CartException("The cart is full.");
+        }
         if(itemsOrdered.contains(media)) {
-            System.out.println("The media is already in the cart");
-            return false;
+            throw new CartException("The media is already in the cart.");
         }
         else{
             itemsOrdered.add(media);
@@ -29,13 +37,15 @@ public class Cart {
         }
     }
     public boolean removeMedia(Media media){
+        if (media == null) {
+            throw new CartException("Cannot remove null media from cart.");
+        }
         if(itemsOrdered.contains(media)){
             itemsOrdered.remove(media);
             System.out.println("The media " + media.getTitle() + " has been removed");
             return true;
         } else {
-            System.out.println("The media is not in the cart");
-            return false;
+            throw new CartException("The media is not in the cart.");
         }
     }
 

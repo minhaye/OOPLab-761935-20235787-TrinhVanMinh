@@ -1,6 +1,8 @@
 package hust.soict.hedspi.aims.screen.customer.controller;
 
 import hust.soict.hedspi.aims.cart.Cart;
+import hust.soict.hedspi.aims.exception.AimsException;
+import hust.soict.hedspi.aims.exception.PlayerException;
 import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.media.Playable;
 import hust.soict.hedspi.aims.store.Store;
@@ -175,7 +177,7 @@ public class CartController {
         if (media instanceof Playable) {
             try {
                 ((Playable) media).play();
-            } catch (Exception e) {
+            } catch (PlayerException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Play error");
                 alert.setHeaderText(null);
@@ -190,7 +192,15 @@ public class CartController {
         Media media = tblMedia.getSelectionModel().getSelectedItem();
 
         if (media != null) {
-            cart.removeMedia(media);
+            try {
+                cart.removeMedia(media);
+            } catch (AimsException e) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Remove media");
+                alert.setHeaderText(null);
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            }
         }
     }
 

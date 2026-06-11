@@ -1,5 +1,8 @@
 package hust.soict.hedspi.aims.media;
 
+import hust.soict.hedspi.aims.exception.InvalidMediaException;
+import hust.soict.hedspi.aims.exception.PlayerException;
+
 public class Track implements Playable {
     private String title;
     private int length;
@@ -7,8 +10,8 @@ public class Track implements Playable {
     public Track() {}
 
     public Track(String title, int length) {
-        this.title = title;
-        this.length = length;
+        setTitle(title);
+        setLength(length);
     }
 
     public String getTitle() {
@@ -19,11 +22,25 @@ public class Track implements Playable {
         return length;
     }
 
+    private void setTitle(String title) {
+        if (title == null || title.trim().isEmpty()) {
+            throw new InvalidMediaException("Track title must not be empty.");
+        }
+        this.title = title;
+    }
+
+    private void setLength(int length) {
+        if (length < 0) {
+            throw new InvalidMediaException("Track length must be non-negative.");
+        }
+        this.length = length;
+    }
+
     @Override
-    public void play() {
+    public void play() throws PlayerException {
         if(this.getLength() <= 0) {
-            System.out.println("cant play because track length <=0");
-            return;
+            System.err.println("ERROR: Track length is non-positive.");
+            throw new PlayerException("ERROR: Track length is non-positive.");
         }
         System.out.println("Playing track: " + this.getTitle());
         System.out.println("Track length: " + this.getLength());

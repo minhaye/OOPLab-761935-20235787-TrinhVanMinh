@@ -1,11 +1,13 @@
 package hust.soict.hedspi.aims.screen.manager;
 
+import hust.soict.hedspi.aims.exception.AimsException;
 import hust.soict.hedspi.aims.media.Book;
 import hust.soict.hedspi.aims.store.Store;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -54,22 +56,30 @@ public class AddBookToStoreScreen extends AddItemToStoreScreen {
 
         JButton btnAdd = new JButton("Add Book");
         btnAdd.addActionListener(e -> {
-            int id = Integer.parseInt(tfId.getText());
-            String title = tfTitle.getText();
-            String category = tfCategory.getText();
-            float cost = Float.parseFloat(tfCost.getText());
+            try {
+                int id = Integer.parseInt(tfId.getText());
+                String title = tfTitle.getText();
+                String category = tfCategory.getText();
+                float cost = Float.parseFloat(tfCost.getText());
 
-            Book book = new Book(id, title, category, cost);
+                Book book = new Book(id, title, category, cost);
 
-            String[] authors = tfAuthors.getText().split(",");
-            for (String author : authors) {
-                book.addAuthor(author.trim());
+                String[] authors = tfAuthors.getText().split(",");
+                for (String author : authors) {
+                    if (!author.trim().isEmpty()) {
+                        book.addAuthor(author.trim());
+                    }
+                }
+
+                store.addMedia(book);
+
+                new StoreManagerScreen(store);
+                dispose();
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Id and cost must be valid numbers.", "Invalid input", JOptionPane.ERROR_MESSAGE);
+            } catch (AimsException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Invalid input", JOptionPane.ERROR_MESSAGE);
             }
-
-            store.addMedia(book);
-
-            new StoreManagerScreen(store);
-            dispose();
         });
 
         center.add(form);

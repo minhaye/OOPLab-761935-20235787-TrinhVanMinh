@@ -1,21 +1,17 @@
-Compare Swing and AWT elements
+Các nội dung chính học được:
 
-1. Top-level containers
-- Swing thêm chữ J ở đầu tên lớp. Ví dụ AWT: Frame, Dialog, Window, Applet; còn Swing: JFrame, JDialog, JWindow, JApplet.
-- Các container của Swing linh hoạt hơn và hỗ trợ giao diện đẹp hơn.
+1. Exception nên được sử dụng cho các tình huống bất thường mà chương trình cần xử lý hoặc phục hồi, chẳng hạn như dữ liệu đầu vào không hợp lệ, trạng thái đối tượng không hợp lệ hoặc thao tác thất bại.
 
-2. Components
-- AWT: Button, Label, TextField, TextArea, Checkbox, Choice, List, Panel
-- Swing: JButton, JLabel, JTextField, JTextArea, JCheckBox, JComboBox, JList, JPanel
-- Các component của Swing thường có tên tương ứng với AWT nhưng thêm chữ J ở đầu.
+2. Phần mã phát hiện lỗi và phần mã xử lý lỗi có thể được tách biệt. Phương thức phát hiện lỗi có thể phát sinh (throw) exception, trong khi phương thức ở mức cao hơn sẽ bắt (catch) và xử lý exception đó.
 
-3. Event-handling
-- AWT và Swing đều dùng cơ chế event-listener. Ví dụ: ActionEvent, ActionListener, addActionListener().
-=> Vì vậy cách xử lý sự kiện trong Swing và AWT khá giống nhau.
+3. Chỉ nên sử dụng khối try-catch khi chương trình thực sự có khả năng xử lý lỗi. Nếu một phương thức không thể xử lý lỗi một cách phù hợp thì nên để exception tiếp tục được truyền lên các tầng cao hơn.
 
-4. Appearance
-- Giao diện AWT phụ thuộc nhiều vào hệ điều hành nên có thể khác nhau trên từng máy.
-- Giao diện Swing ít phụ thuộc vào hệ điều hành hơn và có thể thay đổi Look and Feel, nên thường đẹp và thống nhất hơn.
+4. Việc xây dựng các exception tùy chỉnh (custom exception) giúp chương trình dễ hiểu và dễ bảo trì hơn vì mỗi loại exception biểu diễn một nhóm lỗi cụ thể.
 
-5. Kết luận
-- Swing giống AWT về ý tưởng lập trình và xử lý sự kiện, nhưng Swing có nhiều component hơn, linh hoạt hơn và giao diện đẹp hơn.
+5. Trong dự án AIMS, PlayerException phù hợp cho các lỗi phát sinh khi phát media; CartException, StoreException, AuthorException và InvalidMediaException phù hợp cho các lỗi nghiệp vụ hoặc lỗi kiểm tra dữ liệu.
+
+6. Constructor và các phương thức setter nên kiểm tra tính hợp lệ của dữ liệu ngay từ đầu để tránh tạo ra các đối tượng không hợp lệ.
+
+7. Khi bắt exception, nên cung cấp thông tin lỗi hữu ích cho người dùng hoặc lập trình viên thông qua các phương thức như getMessage(), toString(), printStackTrace() hoặc hiển thị hộp thoại thông báo trong ứng dụng giao diện đồ họa.
+
+8. Không nên sử dụng exception để điều khiển luồng xử lý thông thường của chương trình. Exception chỉ nên được dùng để biểu diễn các tình huống bất thường hoặc không hợp lệ.

@@ -1,15 +1,43 @@
 
 package hust.soict.hedspi.aims;
 
+import hust.soict.hedspi.aims.exception.PlayerException;
 import hust.soict.hedspi.aims.media.*;
 import hust.soict.hedspi.aims.screen.manager.StoreManagerScreen;
 import hust.soict.hedspi.aims.store.Store;
+
+import javax.swing.JOptionPane;
 
 public class Aims {
     public static void main(String[] args) {
         Store store = new Store();
         seedSampleMedia(store);
+        tryPlaySample(store);
         new StoreManagerScreen(store);
+    }
+
+    private static void tryPlaySample(Store store) {
+        for (Media media : store.getItemsInStore()) {
+            if (media instanceof Playable) {
+                try {
+                    ((Playable) media).play();
+                } catch (PlayerException e) {
+                    handlePlayerException(e);
+                }
+            }
+        }
+    }
+
+    private static void handlePlayerException(PlayerException e) {
+        System.err.println(e.getMessage());
+        System.err.println(e.toString());
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(
+                null,
+                e.getMessage(),
+                "Player error",
+                JOptionPane.ERROR_MESSAGE
+        );
     }
 
     private static void seedSampleMedia(Store store) {

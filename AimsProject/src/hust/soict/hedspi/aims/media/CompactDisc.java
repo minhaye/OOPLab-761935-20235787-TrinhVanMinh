@@ -2,6 +2,9 @@ package hust.soict.hedspi.aims.media;
 
 import java.util.ArrayList;
 
+import hust.soict.hedspi.aims.exception.InvalidMediaException;
+import hust.soict.hedspi.aims.exception.PlayerException;
+
 public class CompactDisc extends Disc implements Playable {
     private String artist;
     private ArrayList<Track> tracks = new ArrayList<>();
@@ -30,11 +33,14 @@ public class CompactDisc extends Disc implements Playable {
     }
 
     public void addTrack(Track track) {
+        if (track == null) {
+            throw new InvalidMediaException("Track must not be null.");
+        }
         if (!tracks.contains(track)) {
             tracks.add(track);
             System.out.println("Track added");
         } 
-        else System.out.println("Track already exists");
+        else throw new InvalidMediaException("Track already exists.");
     }
 
     public void removeTrack(Track track) {
@@ -42,7 +48,7 @@ public class CompactDisc extends Disc implements Playable {
             tracks.remove(track);
             System.out.println("Track removed");
         } 
-        else System.out.println("Track not found");
+        else throw new InvalidMediaException("Track not found.");
     }
     @Override
     public String toString() {
@@ -57,13 +63,20 @@ public class CompactDisc extends Disc implements Playable {
     }
 
     @Override
-    public void play() {
+    public void play() throws PlayerException {
         if(this.getLength() <= 0) {
-            System.out.println("cant play because CD length <=0");
-            return;
+            System.err.println("ERROR: CD length is non-positive.");
+            throw new PlayerException("ERROR: CD length is non-positive.");
         }
         System.out.println("Playing CD: " + this.getTitle());
         System.out.println("CD length: " + this.getLength());
-        for (Track track : tracks) track.play();
+        for (Track track : tracks) {
+            try {
+                track.play();
+            } catch (PlayerException e) {
+                System.err.println(e.getMessage());
+                throw new PlayerException("ERROR: A track in CD cannot be played.");
+            }
+        }
     }
 }

@@ -2,6 +2,7 @@ package hust.soict.hedspi.aims.store;
 
 import java.util.ArrayList;
 
+import hust.soict.hedspi.aims.exception.StoreException;
 import hust.soict.hedspi.aims.media.*;
 
 public class Store {
@@ -21,7 +22,10 @@ public class Store {
         return null;
     }
     public void addMedia(Media media) {
-        if (itemsInStore.contains(media)) System.out.println("The media is already in the store");
+        if (media == null) {
+            throw new StoreException("Cannot add null media to store.");
+        }
+        if (itemsInStore.contains(media)) throw new StoreException("The media is already in the store.");
         else {
             itemsInStore.add(media);
             qtyInStore++;
@@ -33,7 +37,7 @@ public class Store {
             itemsInStore.remove(media);
             qtyInStore--;
             System.out.println("The media " + media.getTitle() + " has been removed");
-        } else System.out.println("The media is not in the store");
+        } else throw new StoreException("The media is not in the store.");
     }
     public void sortByTitleCost(){
         itemsInStore.sort(new MediaComparatorByTitleCost());

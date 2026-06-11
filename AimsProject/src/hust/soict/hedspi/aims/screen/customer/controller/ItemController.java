@@ -1,6 +1,8 @@
 package hust.soict.hedspi.aims.screen.customer.controller;
 
 import hust.soict.hedspi.aims.cart.Cart;
+import hust.soict.hedspi.aims.exception.AimsException;
+import hust.soict.hedspi.aims.exception.PlayerException;
 import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.media.Playable;
 import javafx.event.ActionEvent;
@@ -47,15 +49,21 @@ public class ItemController {
 
     @FXML
     void btnAddToCartClicked(ActionEvent event) {
-        boolean added = cart.addMedia(media);
+        try {
+            cart.addMedia(media);
 
-        Alert alert = new Alert(added ? Alert.AlertType.INFORMATION : Alert.AlertType.WARNING);
-        alert.setTitle("Add to cart");
-        alert.setHeaderText(null);
-        alert.setContentText(added
-                ? media.getTitle() + " has been added to cart."
-                : media.getTitle() + " is already in the cart.");
-        alert.showAndWait();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Add to cart");
+            alert.setHeaderText(null);
+            alert.setContentText(media.getTitle() + " has been added to cart.");
+            alert.showAndWait();
+        } catch (AimsException e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Add to cart");
+            alert.setHeaderText(null);
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -63,7 +71,7 @@ public class ItemController {
         if (media instanceof Playable) {
             try {
                 ((Playable) media).play();
-            } catch (Exception e) {
+            } catch (PlayerException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Play error");
                 alert.setHeaderText(null);
